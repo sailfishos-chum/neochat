@@ -171,7 +171,7 @@ done
 %{_kf6_bindir}/neochat
 %{_kf6_plugindir}/purpose/neochatshareplugin.so
 %{_kf6_datadir}/applications/*.desktop
-%{_kf6_datadir}/dbus-1/services/org.kde.neochat.service
+#%%{_kf6_datadir}/dbus-1/services/org.kde.neochat.service
 %{_kf6_datadir}/icons/hicolor/scalable/apps/*.svg
 %{_kf6_datadir}/icons/hicolor/*/apps/*.png
 %{_kf6_datadir}/knotifications6/neochat.notifyrc
