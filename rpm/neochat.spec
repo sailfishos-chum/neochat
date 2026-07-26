@@ -4,17 +4,13 @@
 %bcond_with upush
 
 Name:       neochat
-# Newer versions require Quotient 0.9, which needs CXX23 support.
-# See the libquotient package for details.
-#Version:    24.08.3
-# 25.11.80 and later require Qt6.9 or .10
 Version:    25.08.3
 Release:    1%{?dist}
 License:    Apache-2.0 and BSD-3-Clause and CC0-1.0 and LGPL-2.0-or-later and CC-BY-SA-4.0
 Summary:    A client for matrix, the decentralized communication protocol
 Url:        https://invent.kde.org/network/neochat
 #Source0:    https://invent.kde.org/pim/%%{name}/-/archive/v%%{version}/%%{name}-v%%{version}.tar.bz2
-Source0:    %{name}-v%{version}.tar.bz2
+Source0:    %{name}-%{version}.tar.bz2
 
 Patch0:  0000-add-Sailfish-OS-Option-and-define.patch
 Patch1:  0001-no-tts.patch
@@ -113,7 +109,7 @@ Links:
 
 
 %prep
-%autosetup -p1 -n %{name}-v%{version}
+%autosetup -p1 -n %{name}-%{version}/upstream
 
 %build
 export SBOX_MAPPING_LOGLEVEL=error
