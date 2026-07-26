@@ -31,6 +31,7 @@ Requires:      kf6-kquickcharts
 #Requires:      qml(org.kde.kquickimageeditor)
 
 BuildRequires: desktop-file-utils
+BuildRequires: sailfish-svg2png
 BuildRequires: kf6-extra-cmake-modules >= %kf6_version
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
