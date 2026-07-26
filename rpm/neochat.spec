@@ -48,7 +48,7 @@ BuildRequires: cmake(Qt6QuickControls2)
 BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6Svg)
 #BuildRequires: cmake(Qt6TextToSpeech)
-BuildRequires: cmake(Qt6WebView)
+#BuildRequires: cmake(Qt6WebView)
 
 BuildRequires: cmake(QCoro6)
 BuildRequires: cmake(QuotientQt6)
