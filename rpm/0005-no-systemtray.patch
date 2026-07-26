@@ -1,0 +1,54 @@
+--- a/src/app/CMakeLists.txt
++++ b/src/app/CMakeLists.txt
+@@ -154,11 +154,13 @@
+ target_sources(neochat-app PRIVATE ${NEOCHAT_ICON})
+ 
+ if(NOT ANDROID)
++    if (NOT SAILFISHOS)
+     if (NOT WIN32 AND NOT APPLE)
+         target_sources(neochat PRIVATE trayicon_sni.cpp trayicon_sni.h)
+         target_link_libraries(neochat PRIVATE KF6::StatusNotifierItem)
+     else()
+         target_sources(neochat PRIVATE trayicon.cpp trayicon.h)
++    endif()
+     endif()
+     target_link_libraries(neochat PUBLIC KF6::WindowSystem)
+     target_compile_definitions(neochat PUBLIC -DHAVE_WINDOWSYSTEM)
+--- a/src/app/controller.cpp
++++ b/src/app/controller.cpp
+@@ -36,7 +36,7 @@
+ 
+ #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+ #include "trayicon.h"
+-#elif !defined(Q_OS_ANDROID)
++#elif !defined(Q_OS_ANDROID) && !defined(SAILFISHOS)
+ #include "trayicon_sni.h"
+ #endif
+ 
+@@ -131,7 +131,7 @@
+ 
+     ProxyController::instance().setApplicationProxy();
+ 
+-#ifndef Q_OS_ANDROID
++#if !defined(Q_OS_ANDROID) && !defined(SAILFISHOS)
+     setQuitOnLastWindowClosed();
+     connect(NeoChatConfig::self(), &NeoChatConfig::SystemTrayChanged, this, &Controller::setQuitOnLastWindowClosed);
+ #endif
+@@ -262,7 +262,7 @@
+ 
+ bool Controller::supportSystemTray() const
+ {
+-#ifdef Q_OS_ANDROID
++#if defined(Q_OS_ANDROID) || defined(SAILFISHOS)
+     return false;
+ #else
+     auto de = QString::fromLatin1(qgetenv("XDG_CURRENT_DESKTOP"));
+@@ -272,7 +272,7 @@
+ 
+ void Controller::setQuitOnLastWindowClosed()
+ {
+-#ifndef Q_OS_ANDROID
++#if !defined(Q_OS_ANDROID) && !defined(SAILFISHOS)
+     if (supportSystemTray() && NeoChatConfig::self()->systemTray()) {
+         m_trayIcon = new TrayIcon(this);
+         m_trayIcon->show();

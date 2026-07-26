@@ -1,0 +1,19 @@
+commit 55711b523b581fe5e4cedc100586b7224326d856
+Author: nephros <nemo@JollaC2>
+Date:   Mon Jun 8 09:31:01 2026 +0200
+
+    No X11
+
+diff --git a/src/app/CMakeLists.txt b/src/app/CMakeLists.txt
+index e16e3c370..13c5f9446 100644
+--- a/src/app/CMakeLists.txt
++++ b/src/app/CMakeLists.txt
+@@ -164,7 +164,7 @@ if(NOT ANDROID)
+     target_compile_definitions(neochat PUBLIC -DHAVE_WINDOWSYSTEM)
+ endif()
+ 
+-if (NOT ANDROID AND NOT WIN32 AND NOT APPLE AND NOT HAIKU)
++if (NOT ANDROID AND NOT WIN32 AND NOT APPLE AND NOT HAIKU AND NOT SAILFISHOS)
+     target_compile_definitions(neochat PUBLIC -DHAVE_RUNNER)
+     target_compile_definitions(neochat PUBLIC -DHAVE_X11=1)
+     target_sources(neochat PRIVATE runner.cpp)

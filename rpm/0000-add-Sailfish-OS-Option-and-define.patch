@@ -1,0 +1,30 @@
+commit dbe321bd49ae31e097afe70d15c40b9cac0ac006
+Author: nephros <nemo@JollaC2>
+Date:   Mon Jun 8 09:22:40 2026 +0200
+
+    Add Sailfish OS Option and #define
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 562c254a2..ea6ef17e6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -26,6 +26,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+ set(KDE_COMPILERSETTINGS_LEVEL 6.0)
+ 
++option(SAILFISHOS "Build for Sailfish OS" ON)
++
+ include(FeatureSummary)
+ include(ECMSetupVersion)
+ include(KDEInstallDirs)
+@@ -167,6 +169,10 @@ if(ANDROID)
+     set(BUILD_TESTING FALSE)
+ endif()
+ 
++if(SAILFISHOS)
++    add_definitions(-DSAILFISHOS)
++endif()
++
+ ki18n_install(po)
+ 
+ install(FILES org.kde.neochat.desktop DESTINATION ${KDE_INSTALL_APPDIR})

@@ -1,0 +1,77 @@
+commit 14e4c4735be6567778a7655b4ca9b4d3e0df4c78
+Author: nephros <nemo@JollaC2>
+Date:   Mon Jun 8 09:32:07 2026 +0200
+
+    No K Syntax Highlighting
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 99da65f75..d0d6a44ad 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -91,12 +91,16 @@ if(ANDROID)
+     )
+ else()
+     find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets)
+-    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS QQC2DesktopStyle KIO WindowSystem StatusNotifierItem Crash)
+-    find_package(KF6SyntaxHighlighting ${KF_MIN_VERSION} REQUIRED)
+-    set_package_properties(KF6QQC2DesktopStyle PROPERTIES
+-        TYPE RUNTIME
+-    )
+-    ecm_find_qmlmodule(org.kde.syntaxhighlighting 1.0)
++    if(NOT SAILFISHOS)
++        find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS QQC2DesktopStyle KIO WindowSystem StatusNotifierItem Crash)
++        find_package(KF6SyntaxHighlighting ${KF_MIN_VERSION} REQUIRED)
++        set_package_properties(KF6QQC2DesktopStyle PROPERTIES
++            TYPE RUNTIME
++        )
++        ecm_find_qmlmodule(org.kde.syntaxhighlighting 1.0)
++    else()
++        find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS KIO WindowSystem)
++    endif()
+ 
+     find_package(ICU 61.0 COMPONENTS uc)
+     set_package_properties(ICU PROPERTIES
+diff --git a/src/messagecontent/CMakeLists.txt b/src/messagecontent/CMakeLists.txt
+index bd93c6449..d6ac2b2fc 100644
+--- a/src/messagecontent/CMakeLists.txt
++++ b/src/messagecontent/CMakeLists.txt
+@@ -102,6 +102,6 @@ target_link_libraries(MessageContent PRIVATE
+     LibNeoChat
+ )
+ 
+-if(NOT ANDROID)
++if(NOT ANDROID AND NOT SAILFISHOS)
+     target_link_libraries(MessageContent PUBLIC KF6::SyntaxHighlighting)
+ endif()
+diff --git a/src/messagecontent/models/messagecontentmodel.cpp b/src/messagecontent/models/messagecontentmodel.cpp
+index 194c661c5..00a721b59 100644
+--- a/src/messagecontent/models/messagecontentmodel.cpp
++++ b/src/messagecontent/models/messagecontentmodel.cpp
+@@ -21,7 +21,7 @@
+ #include <KLocalizedString>
+ #include <Kirigami/Platform/PlatformTheme>
+ 
+-#ifndef Q_OS_ANDROID
++#if !defined(Q_OS_ANDROID) && !defined(SAILFISHOS)
+ #include <KSyntaxHighlighting/Definition>
+ #include <KSyntaxHighlighting/Repository>
+ #endif
+commit 15d9b983f440e1a7eef613f6da9ae87ec53662fa
+Author: nephros <nemo@JollaC2>
+Date:   Mon Jun 8 09:50:12 2026 +0200
+
+    fixup! No K Syntax Highlighting
+
+diff --git a/src/messagecontent/models/messagecontentmodel.cpp b/src/messagecontent/models/messagecontentmodel.cpp
+index 00a721b59..21fc91799 100644
+--- a/src/messagecontent/models/messagecontentmodel.cpp
++++ b/src/messagecontent/models/messagecontentmodel.cpp
+@@ -590,7 +590,7 @@ QList<MessageComponent> MessageContentModel::componentsForType(MessageComponentT
+             if (!m_isReply) {
+                 auto fileTransferInfo = m_room->cachedFileTransferInfo(event.first);
+ 
+-#ifndef Q_OS_ANDROID
++#if !defined(Q_OS_ANDROID) && !defined(SAILFISHOS)
+                 Q_ASSERT(roomMessageEvent->content() != nullptr && roomMessageEvent->has<EventContent::FileContent>());
+                 const QMimeType mimeType = roomMessageEvent->get<EventContent::FileContent>()->mimeType;
+                 if (mimeType.name() == u"text/plain"_s || mimeType.parentMimeTypes().contains(u"text/plain"_s)) {

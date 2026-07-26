@@ -1,0 +1,13 @@
+--- a/src/app/main.cpp
++++ b/src/app/main.cpp
+@@ -65,6 +65,10 @@
+ #include "fakerunner.h"
+ #endif
+ 
++#if defined(HAVE_KUNIFIEDPUSH)
++#include <QDBusConnection>
++#endif
++
+ #ifdef Q_OS_WINDOWS
+ #include <Windows.h>
+ #endif

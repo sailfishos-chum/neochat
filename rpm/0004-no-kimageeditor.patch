@@ -1,0 +1,26 @@
+commit 1a90cc0e09740c10ce56df2b0d6b340166eba5b9
+Author: nephros <nemo@JollaC2>
+Date:   Mon Jun 8 09:33:17 2026 +0200
+
+    No KImageEditor
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d0d6a44ad..36e93c6e4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -135,6 +135,7 @@ ecm_find_qmlmodule(org.kde.quickcharts 1.0)
+ ecm_find_qmlmodule(QtLocation)
+ ecm_find_qmlmodule(org.kde.prison)
+ 
++if(NOT SAILFISHOS)
+ find_package(KQuickImageEditor COMPONENTS)
+ set_package_properties(KQuickImageEditor PROPERTIES
+     TYPE REQUIRED
+@@ -142,6 +143,7 @@ set_package_properties(KQuickImageEditor PROPERTIES
+     URL "https://invent.kde.org/libraries/kquickimageeditor/"
+     PURPOSE "Add image editing capability to image attachments"
+ )
++endif()
+ 
+ find_package(QCoro6 0.4 COMPONENTS Core Network REQUIRED)
+ 
