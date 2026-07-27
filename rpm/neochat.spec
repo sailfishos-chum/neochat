@@ -65,7 +65,7 @@ BuildRequires: cmake(KF6ItemModels)
 BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6SyntaxHighlighting)
-BuildRequires: cmake(KF6DBusAddons
+BuildRequires: cmake(KF6DBusAddons)
 
 BuildRequires: cmake(KQuickImageEditor)
 BuildRequires:  cmake(qt6declarative_location)
