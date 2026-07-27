@@ -42,7 +42,6 @@ BuildRequires: kf6-rpm-macros
 BuildRequires: pkgconfig(openssl)
 
 BuildRequires: pkgconfig(Qt6Core)
-BuildRequires: pkgconfig(Qt6Config)
 
 #Core Quick Gui QuickControls2 Multimedia Svg TextToSpeech WebView
 BuildRequires: cmake(Qt6Quick)
