@@ -24,6 +24,7 @@ Patch10: 0000-conserve-memory.patch
 
 Requires:      qt6-qtlocation
 Requires:      kf6-kquickcharts
+Requires:      kf6-kitemmodels
 #Requires:      kf6-kio-widgets
 #Requires:      qml(org.kde.prison)
 #Requires:      qml(QtLocation)
