@@ -31,7 +31,8 @@ Requires:      kf6-prison
 Requires:      kf6-prison
 Requires:      kf6-syntaxhighlighting
 Requires:      kf6-kquickimageeditor-imports
-Requires:      kf6-qqc2-desktop-style
+#Requires:      kf6-qqc2-desktop-style
+Requires:      kf6-qqc2-breeze-style
 
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
@@ -68,7 +69,8 @@ BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6SyntaxHighlighting)
 BuildRequires: cmake(KF6DBusAddons)
-BuildRequires: cmake(KF6QQC2DesktopStyle)
+#BuildRequires: cmake(KF6QQC2DesktopStyle)
+BuildRequires: cmake(QQC2BreezeStyle)
 
 BuildRequires: cmake(KQuickImageEditor)
 BuildRequires:  cmake(qt6declarative_location)
