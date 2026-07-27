@@ -1,14 +1,8 @@
-commit 14e4c4735be6567778a7655b4ca9b4d3e0df4c78
-Author: nephros <nemo@JollaC2>
-Date:   Mon Jun 8 09:32:07 2026 +0200
-
-    No K Syntax Highlighting
-
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 99da65f75..d0d6a44ad 100644
+index 562c254a2..2bad76954 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -91,12 +91,16 @@ if(ANDROID)
+@@ -89,12 +89,16 @@ if(ANDROID)
      )
  else()
      find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets)
@@ -44,7 +38,7 @@ index bd93c6449..d6ac2b2fc 100644
      target_link_libraries(MessageContent PUBLIC KF6::SyntaxHighlighting)
  endif()
 diff --git a/src/messagecontent/models/messagecontentmodel.cpp b/src/messagecontent/models/messagecontentmodel.cpp
-index 194c661c5..00a721b59 100644
+index 194c661c5..21fc91799 100644
 --- a/src/messagecontent/models/messagecontentmodel.cpp
 +++ b/src/messagecontent/models/messagecontentmodel.cpp
 @@ -21,7 +21,7 @@
@@ -56,16 +50,6 @@ index 194c661c5..00a721b59 100644
  #include <KSyntaxHighlighting/Definition>
  #include <KSyntaxHighlighting/Repository>
  #endif
-commit 15d9b983f440e1a7eef613f6da9ae87ec53662fa
-Author: nephros <nemo@JollaC2>
-Date:   Mon Jun 8 09:50:12 2026 +0200
-
-    fixup! No K Syntax Highlighting
-
-diff --git a/src/messagecontent/models/messagecontentmodel.cpp b/src/messagecontent/models/messagecontentmodel.cpp
-index 00a721b59..21fc91799 100644
---- a/src/messagecontent/models/messagecontentmodel.cpp
-+++ b/src/messagecontent/models/messagecontentmodel.cpp
 @@ -590,7 +590,7 @@ QList<MessageComponent> MessageContentModel::componentsForType(MessageComponentT
              if (!m_isReply) {
                  auto fileTransferInfo = m_room->cachedFileTransferInfo(event.first);
