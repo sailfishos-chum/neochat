@@ -1,27 +1,21 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 562c254a2..ef8605c75 100644
+index 562c254a2..0e184797d 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -89,11 +89,18 @@ if(ANDROID)
+@@ -89,7 +89,15 @@ if(ANDROID)
      )
  else()
      find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets)
 -    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS QQC2DesktopStyle KIO WindowSystem StatusNotifierItem Crash)
 +    if (SAILFISHOS)
-+        find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS QQC2BreezeStyle KIO WindowSystem)
-+        set_package_properties(KF6QQC2BreezeStyle PROPERTIES
++        find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS KIO WindowSystem)
++        find_package(QQC2BreezeStyle ${KF_MIN_VERSION} REQUIRED)
++        set_package_properties(QQC2BreezeStyle PROPERTIES
 +            TYPE RUNTIME
 +        )
 +    else()
 +        find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS QQC2DesktopStyle KIO WindowSystem StatusNotifierItem Crash)
-+        set_package_properties(KF6QQC2DesktopStyle PROPERTIES
-+            TYPE RUNTIME
-+        )
 +    endif()
      find_package(KF6SyntaxHighlighting ${KF_MIN_VERSION} REQUIRED)
--    set_package_properties(KF6QQC2DesktopStyle PROPERTIES
--        TYPE RUNTIME
--    )
-     ecm_find_qmlmodule(org.kde.syntaxhighlighting 1.0)
- 
-     find_package(ICU 61.0 COMPONENTS uc)
+     set_package_properties(KF6QQC2DesktopStyle PROPERTIES
+         TYPE RUNTIME

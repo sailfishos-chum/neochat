@@ -31,15 +31,13 @@ Requires:      kf6-prison
 Requires:      kf6-prison
 Requires:      kf6-syntaxhighlighting
 Requires:      kf6-kquickimageeditor-imports
-Requires:      kf6-qqc2-breeze-style
+Requires:      kf6-qqc2-desktop-style
 
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
 BuildRequires: kf6-extra-cmake-modules >= %kf6_version
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
-#BuildRequires: kf6-qqc2-desktop-style
-BuildRequires: kf6-qqc2-breeze-style
 
 BuildRequires: pkgconfig(openssl)
 
@@ -52,6 +50,7 @@ BuildRequires: cmake(Qt6Multimedia)
 BuildRequires: cmake(Qt6Svg)
 #BuildRequires: cmake(Qt6TextToSpeech)
 #BuildRequires: cmake(Qt6WebView)
+
 
 BuildRequires: cmake(QCoro6)
 BuildRequires: cmake(QuotientQt6)
@@ -69,6 +68,7 @@ BuildRequires: cmake(KF6IconThemes)
 BuildRequires: cmake(KF6ColorScheme)
 BuildRequires: cmake(KF6SyntaxHighlighting)
 BuildRequires: cmake(KF6DBusAddons)
+BuildRequires: cmake(KF6QQC2DesktopStyle)
 
 BuildRequires: cmake(KQuickImageEditor)
 BuildRequires:  cmake(qt6declarative_location)
