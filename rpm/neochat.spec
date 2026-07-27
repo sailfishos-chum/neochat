@@ -161,6 +161,7 @@ desktop-file-edit \
   --remove-key=SingleMainWindow \
   --set-key=X-Nemo-Single-Instance --set-value=no \
   --set-key=X-Nemo-Application-Type --set-value=no-invoker \
+  --set-key=DBusActivatable --set-value=true \
   --set-key=Exec --set-value="qt6-start.sh /usr/bin/neochat" \
    %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
 printf '\n[X-Sailjail]\nSandboxing=Disabled\n' \
