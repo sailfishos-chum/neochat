@@ -134,8 +134,14 @@ export SBOX_QUIET=1
 # prevent virtual memory exhaustion
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /' )
 export CXXFLAGS="%{build_cxxflags} -Wl,--no-keep-memory -Wl,--reduce-memory-overheads" # --param ggc-min-expand=10"
- #FIXME: this is what causes memory exhaustion, null it for now
-echo '{}' > src/libneochat/emojitones_data.h
+# FIXME: this is what causes memory exhaustion, null it for now
+#echo '{}' > src/libneochat/emojitones_data.h
+# RACIST version (sorry):
+grep -v 'dark.skin' src/libneochat/emojitones_data.h > src/libneochat/emojitones_data.h_
+mv src/libneochat/emojitones_data.h_ src/libneochat/emojitones_data.h
+# Even more RACIST version (sorry):
+grep -v 'medium' src/libneochat/emojitones_data.h > src/libneochat/emojitones_data.h_
+mv src/libneochat/emojitones_data.h_ src/libneochat/emojitones_data.h
 
 %cmake_kf6 \
   -Wno-dev \
@@ -148,7 +154,7 @@ echo '{}' > src/libneochat/emojitones_data.h
 %endif
   %{nil}
 
-#%%cmake_build -j1 --target LibNeoChat ||:
+%cmake_build --target LibNeoChat || %cmake_build -j 1 --target LibNeoChat
 %cmake_build
 
 %install
