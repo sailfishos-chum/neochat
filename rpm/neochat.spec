@@ -36,8 +36,8 @@ BuildRequires: sailfish-svg2png
 BuildRequires: kf6-extra-cmake-modules >= %kf6_version
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
-#BuildRequires: kf6-qqc2-desktop-style
 #BuildRequires: kf6-qqc2-breeze-style
+BuildRequires: cmake(KF6QQC2DesktopStyle)
 
 BuildRequires: pkgconfig(openssl)
 
