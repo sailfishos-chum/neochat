@@ -15,6 +15,7 @@ Source0:    %{name}-%{version}.tar.bz2
 Patch0:  0000-add-Sailfish-OS-Option-and-define.patch
 Patch1:  0001-no-tts.patch
 Patch2:  0002-no-x11.patch
+Patch3:  0003-no-desktop.patch
 #Patch3:  0003-no-ksyntaxhighlight.patch
 #Patch4:  0004-no-kimageeditor.patch
 Patch5:  0005-no-systemtray.patch
@@ -30,6 +31,7 @@ Requires:      kf6-prison
 Requires:      kf6-prison
 Requires:      kf6-syntaxhighlighting
 Requires:      kf6-kquickimageeditor-imports
+Requires:      kf6-qqc2-breeze-style
 
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
@@ -37,7 +39,7 @@ BuildRequires: kf6-extra-cmake-modules >= %kf6_version
 BuildRequires: gcc-c++
 BuildRequires: kf6-rpm-macros
 #BuildRequires: kf6-qqc2-desktop-style
-#BuildRequires: kf6-qqc2-breeze-style
+BuildRequires: kf6-qqc2-breeze-style
 
 BuildRequires: pkgconfig(openssl)
 
