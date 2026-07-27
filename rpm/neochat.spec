@@ -11,6 +11,7 @@ Summary:    A client for matrix, the decentralized communication protocol
 Url:        https://invent.kde.org/network/neochat
 #Source0:    https://invent.kde.org/pim/%%{name}/-/archive/v%%{version}/%%{name}-v%%{version}.tar.bz2
 Source0:    %{name}-%{version}.tar.bz2
+Source1:    neochat.svg
 
 Patch0:  0000-add-Sailfish-OS-Option-and-define.patch
 Patch1:  0001-no-tts.patch
@@ -165,7 +166,9 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
-## generate some icons
+## generate some icons, replace original icon
+rm -f %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/*.svg
+install -Dpm0644 %{S:1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/org.kde.neochat.svg
 for size in 86 108 128 172 256 512; do
 install -d %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/
 sailfish_svg2png -z 1.0 -s 1 1 1 1 1 1 ${size} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/ %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/
