@@ -24,19 +24,23 @@ Patch6:  0006-have-dbus.patch
 
 Patch10: 0000-conserve-memory.patch
 
-Requires:      qt6-qtlocation
 Requires:      kf6-kquickcharts
-Requires:      kf6-kitemmodels
 Requires:      kf6-prison
 #Requires:      kf6-kio-widgets
-Requires:      kf6-prison
-Requires:      kf6-syntaxhighlighting
-Requires:      kf6-kquickimageeditor-imports
-#Requires:      kf6-qqc2-desktop-style
-Requires:      kf6-qqc2-breeze-style
 
 Requires:      qt6-sailfishos-util
 Requires:      qt6-sfos-maliit-platforminputcontext
+#Requires:      kf6-qqc2-desktop-style
+Requires:      kf6-qqc2-breeze-style
+
+#  org.kde.syntaxhighlighting-QMLModule, QML module 'org.kde.syntaxhighlighting' is a runtime dependency.
+#  org.kde.kquickimageeditor-QMLModule, QML module 'org.kde.kquickimageeditor' is a runtime dependency.
+#  org.kde.kitemmodels-QMLModule, QML module 'org.kde.kitemmodels' is a runtime dependency.
+#  QtLocation-QMLModule, QML module 'QtLocation' is a runtime dependency.
+Requires:      kf6-syntaxhighlighting
+Requires:      kf6-kquickimageeditor-imports
+Requires:      kf6-kitemmodels
+Requires:      qt6-qtlocation
 
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
