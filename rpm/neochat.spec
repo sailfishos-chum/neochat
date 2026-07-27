@@ -34,6 +34,8 @@ Requires:      kf6-kquickimageeditor-imports
 #Requires:      kf6-qqc2-desktop-style
 Requires:      kf6-qqc2-breeze-style
 
+Requires:      qt6-sailfishos-util
+
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
 BuildRequires: kf6-extra-cmake-modules >= %kf6_version
@@ -151,8 +153,7 @@ echo '{}' > src/libneochat/emojitones_data.h
 desktop-file-edit \
   --remove-key=Version \
   --remove-key=SingleMainWindow \
-   %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
-sed -i -e 's@^Exec=neochat@Exec=qt-runner /usr/bin/neochat@g' \
+  --set-key=Exec --set-value="qt6-start.sh /usr/bin/neochat" \
    %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
 printf 'X-Nemo-Single-Instance=no\nX-Nemo-Application-Type=no-invoker\n'
    >> %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
