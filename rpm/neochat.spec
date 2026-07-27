@@ -159,10 +159,10 @@ echo '{}' > src/libneochat/emojitones_data.h
 desktop-file-edit \
   --remove-key=Version \
   --remove-key=SingleMainWindow \
+  --set-key=X-Nemo-Single-Instance --set-value=no \
+  --set-key=X-Nemo-Application-Type --set-value=no-invoker \
   --set-key=Exec --set-value="qt6-start.sh /usr/bin/neochat" \
    %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
-printf 'X-Nemo-Single-Instance=no\nX-Nemo-Application-Type=no-invoker\n'
-   >> %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
 printf '\n[X-Sailjail]\nSandboxing=Disabled\n' \
    >> %{buildroot}%{_datadir}/applications/org.kde.neochat.desktop
 
