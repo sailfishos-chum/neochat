@@ -1,6 +1,8 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 562c254a2..acb9f8f16 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -56,7 +56,7 @@
+@@ -56,7 +56,7 @@ ecm_setup_version(${PROJECT_VERSION}
      VERSION_HEADER ${CMAKE_CURRENT_BINARY_DIR}/neochat-version.h
  )
  
@@ -9,9 +11,11 @@
  set_package_properties(Qt6 PROPERTIES
      TYPE REQUIRED
      PURPOSE "Basic application components"
+diff --git a/src/app/CMakeLists.txt b/src/app/CMakeLists.txt
+index 56e001549..0492c55b3 100644
 --- a/src/app/CMakeLists.txt
 +++ b/src/app/CMakeLists.txt
-@@ -33,9 +33,14 @@
+@@ -33,9 +33,14 @@ add_library(neochat STATIC
      identityserverhelper.h
      models/commonroomsmodel.cpp
      models/commonroomsmodel.h
@@ -26,7 +30,7 @@
  
  set_source_files_properties(qml/OsmLocationPlugin.qml PROPERTIES
      QT_QML_SINGLETON_TYPE TRUE
-@@ -189,7 +194,6 @@
+@@ -189,7 +194,6 @@ target_link_libraries(neochat PUBLIC
      Qt::Multimedia
      Qt::Network
      Qt::QuickControls2
@@ -34,3 +38,32 @@
      KF6::I18n
      KF6::Kirigami
      KF6::Notifications
+diff --git a/src/timeline/MessageDelegateContextMenu.qml b/src/timeline/MessageDelegateContextMenu.qml
+index c22e35001..7fbbcf9f5 100644
+--- a/src/timeline/MessageDelegateContextMenu.qml
++++ b/src/timeline/MessageDelegateContextMenu.qml
+@@ -4,7 +4,7 @@
+ 
+ import QtQuick
+ import QtQuick.Controls as QQC2
+-import QtTextToSpeech
++//import QtTextToSpeech
+ import QtQuick.Layouts
+ import org.kde.kirigami as Kirigami
+ import org.kde.kirigamiaddons.components as KirigamiComponents
+@@ -90,6 +90,7 @@ DelegateContextMenu {
+             Clipboard.saveText("https://matrix.to/#/" + currentRoom.id + "/" + root.eventId);
+         }
+     }
++/* disabled on Sailfish OS
+     QQC2.Action {
+         text: i18nc("@action:inmenu", "Read Text Aloud")
+         icon.name: "audio-speakers-symbolic"
+@@ -97,6 +98,7 @@ DelegateContextMenu {
+             TextToSpeechHelper.speak(i18nc("@info text-to-speech %1 is author %2 is message text", "%1 said %2", root.author.displayName, root.plainText))
+         }
+     }
++*/
+     Kirigami.Action {
+         separator: true
+     }
