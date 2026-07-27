@@ -35,6 +35,7 @@ Requires:      kf6-kquickimageeditor-imports
 Requires:      kf6-qqc2-breeze-style
 
 Requires:      qt6-sailfishos-util
+Requires:      qt6-sfos-maliit-platforminputcontext
 
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
