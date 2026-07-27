@@ -1,6 +1,23 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 562c254a2..3cce91fdf 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -172,7 +172,9 @@ ki18n_install(po)
+ install(FILES org.kde.neochat.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+ install(FILES org.kde.neochat.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+ install(FILES org.kde.neochat.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
+-install(FILES org.kde.neochat.tray.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
++if (NOT SAILFISHOS)
++    install(FILES org.kde.neochat.tray.svg DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/scalable/apps)
++endif()
+ 
+ add_definitions(-DQT_NO_FOREACH)
+ 
+diff --git a/src/app/CMakeLists.txt b/src/app/CMakeLists.txt
+index 56e001549..8394b713a 100644
 --- a/src/app/CMakeLists.txt
 +++ b/src/app/CMakeLists.txt
-@@ -154,11 +154,13 @@
+@@ -154,12 +154,14 @@ ecm_add_app_icon(NEOCHAT_ICON ICONS ${CMAKE_SOURCE_DIR}/128-logo.png)
  target_sources(neochat-app PRIVATE ${NEOCHAT_ICON})
  
  if(NOT ANDROID)
@@ -10,10 +27,13 @@
          target_link_libraries(neochat PRIVATE KF6::StatusNotifierItem)
      else()
          target_sources(neochat PRIVATE trayicon.cpp trayicon.h)
-+    endif()
      endif()
++    endif()
      target_link_libraries(neochat PUBLIC KF6::WindowSystem)
      target_compile_definitions(neochat PUBLIC -DHAVE_WINDOWSYSTEM)
+ endif()
+diff --git a/src/app/controller.cpp b/src/app/controller.cpp
+index d2d1fbfcf..4d63696ee 100644
 --- a/src/app/controller.cpp
 +++ b/src/app/controller.cpp
 @@ -36,7 +36,7 @@
@@ -25,7 +45,7 @@
  #include "trayicon_sni.h"
  #endif
  
-@@ -131,7 +131,7 @@
+@@ -131,7 +131,7 @@ Controller::Controller(QObject *parent)
  
      ProxyController::instance().setApplicationProxy();
  
@@ -34,7 +54,7 @@
      setQuitOnLastWindowClosed();
      connect(NeoChatConfig::self(), &NeoChatConfig::SystemTrayChanged, this, &Controller::setQuitOnLastWindowClosed);
  #endif
-@@ -262,7 +262,7 @@
+@@ -262,7 +262,7 @@ void Controller::initActiveConnection(NeoChatConnection *oldConnection, NeoChatC
  
  bool Controller::supportSystemTray() const
  {
@@ -43,7 +63,7 @@
      return false;
  #else
      auto de = QString::fromLatin1(qgetenv("XDG_CURRENT_DESKTOP"));
-@@ -272,7 +272,7 @@
+@@ -272,7 +272,7 @@ bool Controller::supportSystemTray() const
  
  void Controller::setQuitOnLastWindowClosed()
  {
