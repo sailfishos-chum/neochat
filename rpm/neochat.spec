@@ -15,8 +15,8 @@ Source0:    %{name}-%{version}.tar.bz2
 Patch0:  0000-add-Sailfish-OS-Option-and-define.patch
 Patch1:  0001-no-tts.patch
 Patch2:  0002-no-x11.patch
-Patch3:  0003-no-ksyntaxhighlight.patch
-Patch4:  0004-no-kimageeditor.patch
+#Patch3:  0003-no-ksyntaxhighlight.patch
+#Patch4:  0004-no-kimageeditor.patch
 Patch5:  0005-no-systemtray.patch
 Patch6:  0006-have-dbus.patch
 
@@ -27,10 +27,9 @@ Requires:      kf6-kquickcharts
 Requires:      kf6-kitemmodels
 Requires:      kf6-prison
 #Requires:      kf6-kio-widgets
-#Requires:      qml(org.kde.prison)
-#Requires:      qml(QtLocation)
-#Requires:      qml(org.kde.quickcharts)
-#Requires:      qml(org.kde.kquickimageeditor)
+Requires:      kf6-prison
+Requires:      kf6-syntaxhighlighting
+Requires:      kf6-kquickimageeditor-imports
 
 BuildRequires: desktop-file-utils
 BuildRequires: sailfish-svg2png
@@ -56,24 +55,23 @@ BuildRequires: cmake(QCoro6)
 BuildRequires: cmake(QuotientQt6)
 BuildRequires: cmake(cmark)
 
-# Kirigami I18n Notifications Config CoreAddons Sonnet ItemModels IconThemes ColorScheme
-BuildRequires: kf6-kirigami-devel
-BuildRequires: kf6-kirigami-addons-devel
-BuildRequires: kf6-ki18n-devel
-BuildRequires: kf6-knotifications-devel
-BuildRequires: kf6-kconfig-devel
-BuildRequires: kf6-kcoreaddons-devel
-BuildRequires: kf6-sonnet-devel
-BuildRequires: kf6-kitemmodels-devel
-BuildRequires: kf6-kiconthemes-devel
-BuildRequires: kf6-kcolorscheme-devel
+BuildRequires: cmake(KF6Kirigami)
+BuildRequires: cmake(KF6I18n)
+BuildRequires: cmake(KF6Notifications)
+BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6Sonnet)
+BuildRequires: cmake(KF6ItemModels)
+BuildRequires: cmake(KF6IconThemes)
+BuildRequires: cmake(KF6ColorScheme)
+BuildRequires: cmake(KF6SyntaxHighlighting)
+BuildRequires: cmake(KF6DBusAddons
 
-BuildRequires: kf6-kdbusaddons-devel
-
-#BuildRequires: cmake(KQuickImageEditor)
+BuildRequires: cmake(KQuickImageEditor)
 BuildRequires:  cmake(qt6declarative_location)
 #BuildRequires:  cmake(kf6kio) kf6-kio-widgets-libs
-BuildRequires:  cmake(kf6purpose)
+BuildRequires: cmake(KF6Purpose)
+
 BuildRequires:  pkgconfig(icu-uc)
 
 %if %{with upush}
