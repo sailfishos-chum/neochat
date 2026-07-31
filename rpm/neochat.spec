@@ -188,8 +188,10 @@ done
 %{_kf6_datadir}/icons/hicolor/*/apps/*.png
 %{_kf6_datadir}/knotifications6/neochat.notifyrc
 %{_kf6_datadir}/qlogging-categories6/neochat.categories
-#%%{_kf6_datadir}/dbus-1/services/org.kde.neochat.service
 %exclude %{_kf6_datadir}/krunner/dbusplugins/plasma-runner-neochat.desktop
 %exclude %{_kf6_datadir}/icons/hicolor/scalable/apps/*.svg
 %exclude %{_kf6_datadir}/metainfo/org.kde.neochat.appdata.xml
+%if %{with upush}
+%{_datadir}/dbus-1/services/org.kde.neochat.service
+%endif
 
